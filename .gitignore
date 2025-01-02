@@ -1,0 +1,13 @@
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Python compiled files
+*.pyc
+__pycache__/
+
+# Ignore database
+db.sqlite3
+
+# Ignore media and static files
+media/
+static/
