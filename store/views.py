@@ -37,6 +37,7 @@ def logout_user(request):
       messages.success(request, ("You have been logged out...Thanks for stopping by"))
       return redirect('home')
 
+
 def register_user(request):
 	form = SignUpForm()
 	if request.method == "POST":
@@ -48,8 +49,8 @@ def register_user(request):
 			# log in user
 			user = authenticate(username=username, password=password)
 			login(request, user)
-			messages.success(request, ("Username Created - Please Fill Out Your User Info Below..."))
-			return redirect('update_info')
+			messages.success(request, ("You Have Registered Sucessfully!!! Welcome "))
+			return redirect('home')
 		else:
 			messages.success(request, ("Whoops! There was a problem Registering, please try again..."))
 			return redirect('register')
