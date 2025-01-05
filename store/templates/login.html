@@ -18,6 +18,7 @@
                         
         				<br/><br/>
                         <form  method="POST" action="{% url 'login' %}">
+                            {% csrf_token %}
                             <div class="mb-3">
                               
                               <input type="text" class="form-control" name="username" placeholder="Enter Your Username">
