@@ -12,6 +12,7 @@
         </header>
         <br>
         <div class="container">
+            {% if cart_products %}
             {% for product in cart_products %}
             <div class="card mb-3">
                 <div class="row g-0">
@@ -59,7 +60,11 @@
                
 
             {% endfor %}
+            {% else %}
+            There's Nothing In Your Cart...
+            <br><br> <br> <br><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>    
+            {% endif %}    
         </div>
-<br><br> <br> <br><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>        
+      
 
  {% endblock %}       
