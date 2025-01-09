@@ -66,6 +66,8 @@
         <br><br>
                       <a href="{% url 'home'%}" class="btn btn-secondary">Home</a>
                       <button type="button" date-index="{{product.id}}" class="btn btn-secondary update-cart">Update</button>
+                      <button type="button" data-index="{{ product.id }}" class="btn btn-danger delete-product">Remove</button>
+
                       
         
                     
@@ -84,31 +86,55 @@
             <br><br> <br> <br><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
             {% endif %}    
         </div>
-      
-
- {% endblock %}       
-
-
- <script>
-
-
-$(document).on('click', '.update-cart', function(e){
+        <script>
+          // Update.Cart 
+          $(document).on('click', '.update-cart', function(e){
       e.preventDefault();
-      // grab the product id 
+      //grab the product id 
       var productid = $(this).data('index');
       $.ajax({
           type: 'POST',
           url: '{% url "cart_update" %}',
           data: {
       product_id: $(this).data('index'),
-      product_qty: $('#select' + productid + ' option:selected').text(),
+      product_qty: $('#select' + product_id + ' option:selected').text(),
       csrfmiddlewaretoken: '{{ csrf_token }}',
       action: 'post'
           },
   
           success: function(json){
               //console.log(json)
-              //document.getElementById("cart_quantity").textContent = json.qty
+             // document.getElementById("cart_quantity").textContent = json.qty
+              location.reload();
+          },
+  
+          error: function(xhr, errmsg, err){
+  
+          }
+  
+  
+      });
+  
+  
+  
+  })
+  // Delete Item From Cart 
+  $(document).on('click', 'delete-product', function(e){
+      e.preventDefault();
+      //grab the product id 
+      //var productid = $(this).data('index');
+      $.ajax({
+          type: 'POST',
+          url: '{% url "cart_delete" %}',
+          data: {
+      product_id: $(this).data('index'), 
+      csrfmiddlewaretoken: '{{ csrf_token }}',
+      action: 'post'
+          },
+  
+          success: function(json){
+              //console.log(json)
+             // document.getElementById("cart_quantity").textContent = json.qty
               location.reload();
           },
   
@@ -123,9 +149,12 @@ $(document).on('click', '.update-cart', function(e){
   
   })
   
+        </script>
+             
+
+      
+
+
+ 
   
-  
-
-
-
- </script>
+  {% endblock %} 
