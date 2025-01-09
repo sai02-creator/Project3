@@ -1,4 +1,4 @@
-from store.models import Product
+from store.models import Product 
 
 class Cart():
 
@@ -30,8 +30,25 @@ class Cart():
 			#self.cart[product_id] = {'price': str(product.price)}
 			self.cart[product_id] = int(product_qty)
 
-		self.session.modified = True	
+		self.session.modified = True
 
+	def cart_total(self):
+		# Get product IDS
+		product_ids = self.cart.keys()
+		# lookup those keys in our products database model
+		products = Product.objects.filter(id__in=product_ids)
+		# Get quantities
+		quantities = self.cart
+		# Start counting at 0
+		total = 0	
+
+		for key, value in quantities.items():	
+			# Convert key string into into so we can do math
+			key = int(key)
+			for product in products:
+				if product.id == key:
+					total = total + (product.price * value)
+        return total 
 
 
 	def __len__(self):
@@ -64,3 +81,13 @@ class Cart():
 
 		thing = self.cart
 		return thing
+	
+	def delete(self, product):
+		product_id = str(product)
+		# Delete from dictionary/cart
+		if product_id in self.cart:
+			del self.cart[product_id]
+
+		self.session.modified = True
+	
+
