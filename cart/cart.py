@@ -40,15 +40,21 @@ class Cart():
 		# Get quantities
 		quantities = self.cart
 		# Start counting at 0
-		total = 0	
-
-		for key, value in quantities.items():	
+		total = 0
+		
+		for key, value in quantities.items():
 			# Convert key string into into so we can do math
 			key = int(key)
 			for product in products:
 				if product.id == key:
-					total = total + (product.price * value)
-        return total 
+					if product.is_sale:
+						total = total + (product.sale_price * value)
+					else:
+						total = total + (product.price * value)
+
+
+
+		return total
 
 
 	def __len__(self):
