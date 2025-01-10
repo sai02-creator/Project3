@@ -8,6 +8,11 @@ from .forms import SignUpForm
 from django import forms
 
 
+def update_user(request):
+	return render(request, 'update_user.html', {})
+
+
+
 def category_summary(request):
 	categories = Category.objects.all()
 	return render(request, 'category_summary.html', {"categories":categories})
