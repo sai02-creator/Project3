@@ -18,7 +18,7 @@
         				<br/><br/>
                     
                         {% for category in categories %}
-                        <h3>{{ category }}</h3>
+                        <h3><a href="{% url 'category' 'category' %}" >{{category }}</a></h3>
 
                         {% endfor %}
 
