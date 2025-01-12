@@ -11,3 +11,9 @@ admin.site.register(Profile)
 
 
 
+# Mix profile info and user info
+class ProfileInline(admin.StackedInline):
+	model = Profile
+
+
+
