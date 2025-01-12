@@ -14,6 +14,14 @@ admin.site.register(Profile)
 # Mix profile info and user info
 class ProfileInline(admin.StackedInline):
 	model = Profile
+	
+
+# Extend User Model
+class UserAdmin(admin.ModelAdmin):
+	model = User
+	field = ["username", "first_name", "last_name", "email"]
+	inlines = [ProfileInline]
+
 
 
 
