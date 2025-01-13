@@ -24,7 +24,7 @@
                                 <form method="POST" action="{% url 'search' %}">
                                     {% csrf_token %}
                                     <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+
                                         <input type="text" class="form-control" placeholder="Search For Products" name="searched">
                                       </div>
                                       <button type="submit" class="btn btn-secondary">Search Products</button>
@@ -34,8 +34,10 @@
                           </div>
                           <br><br>
                           {% if searched %}
-                          You Searched For...{{ searched }}
-
+                          {% for product in searched %}
+                          {{product}}<br>
+                          {% endfor %}
+                          
                           {% endif %}
 
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
