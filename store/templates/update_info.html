@@ -23,6 +23,10 @@
     {% csrf_token %}
     
     {{ form.as_p }}
+    <br><br>
+
+     {{ shipping_form.as_p}}
+
     <br/><br/>
     <button type="submit" class="btn btn-secondary">
       Update Profile
