@@ -14,7 +14,7 @@ def billing_info(request):
 
         # Check to see if user is logged in
         if request.user.is_authenticated:
-            return render(request, "payment/billing_info.html", {"cart_products": cart_products, "quantities": quantities, "totals": totals, "shipping_form": request.POST})
+            return render(request, "payment/billing_info.html", {"cart_products": cart_products, "quantities": quantities, "totals": totals, "shipping_info": request.POST})
         else:
             # Not logged in 
             pass
