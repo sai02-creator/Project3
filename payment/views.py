@@ -11,6 +11,22 @@ def process_order(request):
         # Get Billing Info from the last page
         payment_form = PaymentForm(request.POST or None)
         # Get shipping session Data 
+        my_shipping = request.session.get('my_shipping')
+
+        # Create Shipping Address from session info
+        shipping_address = f"{my_shipping['shipping_address1']}\n{my_shipping['shipping_address2']}\n{my_shipping['shipping_city']}\n{my_shipping['shipping_state']}\n{my_shipping['shipping_zipcode']}\n{my_shipping['shipping_country']}"
+        print(shipping_address)
+
+        
+
+
+
+
+
+
+
+        messages.success(request, "Order Placed!")
+        return redirect('home')
 
     else:
         messages.success(request, "Access Denied")
