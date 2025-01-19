@@ -45,7 +45,6 @@ def update_info(request):
 		if form.is_valid() or shipping_form.is_valid():
 			# Save original form
 			form.save()
-			# Save shipping form
 			shipping_form.save()
 			messages.success(request, "Your Info Has Been Updated!!")
 			return redirect('home')
