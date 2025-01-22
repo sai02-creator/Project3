@@ -39,16 +39,19 @@ def cart_add(request):
 
 def cart_delete(request):
     cart = Cart(request)
-    if request.POST.get('action') == 'post':
-        # Get stuff
+    if request.method == 'POST' and request.POST.get('action') == 'post':
         product_id = int(request.POST.get('product_id'))
-        # Call delete Function in Cart
+        # Retrieve the product (just in case we need it for something)
+        product = get_object_or_404(Product, id=product_id)
+
+        # Delete the product from the cart
         cart.delete(product=product_id)
 
-        response = JsonResponse({'product': product_id})
-        messages.success(request, ("Item Deleted From Shopping Cart..."))
-        return response
-
+        # Send back the response
+        messages.success(request, "Item Deleted From Shopping Cart...")
+        return JsonResponse({'status': 'success', 'product_id': product_id})
+    
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
 
 def cart_update(request):
     if request.method == 'POST':
