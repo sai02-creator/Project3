@@ -91,15 +91,10 @@
         <script>
           $(document).on('click', '.update-cart', function(e) {
               e.preventDefault();
-
-              // Grab the product ID from data-index and log it
+      
               var productid = $(this).data('index');
-              var productQty = $('#select' + productid).val(); // Using .val() to get the selected value
-
-              // Log the data to verify it's being sent correctly
-              console.log("Product ID: ", productid);
-              console.log("Product Quantity: ", productQty);
-
+              var productQty = $('#select' + productid).val();
+      
               $.ajax({
                   type: 'POST',
                   url: '{% url "cart_update" %}',
@@ -110,7 +105,6 @@
                       action: 'post'
                   },
                   success: function(json) {
-                      console.log("Success:", json);
                       location.reload();
                   },
                   error: function(xhr, errmsg, err) {
@@ -118,6 +112,28 @@
                   }
               });
           });
-        </script>
-        
+      
+          $(document).on('click', '.delete-product', function(e) {
+              e.preventDefault();
+      
+              var productid = $(this).data('index');
+      
+              $.ajax({
+                  type: 'POST',
+                  url: '{% url "cart_delete" %}',  // Use the delete URL here
+                  data: {
+                      product_id: productid,
+                      csrfmiddlewaretoken: '{{ csrf_token }}',
+                      action: 'post'
+                  },
+                  success: function(json) {
+                      location.reload();  // Reload the page to reflect the updated cart
+                  },
+                  error: function(xhr, errmsg, err) {
+                      console.log("Error:", errmsg, err);
+                  }
+              });
+          });
+      </script>
+      
 {% endblock %}
