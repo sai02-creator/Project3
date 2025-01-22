@@ -2,14 +2,14 @@
 
 from pathlib import Path
 import os 
-from dotenv import load_dotenv
+
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Load our environmental variables
-load_dotenv()
 
-print(os.environ.get('DB_PASSWORD_YO'))
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -77,6 +77,7 @@ DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        
        
         
     }
@@ -128,3 +129,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

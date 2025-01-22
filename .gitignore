@@ -1,4 +1,6 @@
-# Ignore macOS system files
+
+.env
+#Ignore macOS system files
 #.DS_Store
 
 # Ignore Python compiled files
@@ -11,4 +13,3 @@
 # Ignore media and static files
 #media/
 #static/
-.env 
